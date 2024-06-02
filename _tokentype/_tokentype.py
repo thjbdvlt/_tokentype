@@ -1,15 +1,16 @@
 import re
 import spacy.lookups
+import spacy.tokens.token
 
 
 def _generate_regex_emoticon():
-    """Genère une expression régulière pour match les émoticons.
+    """Generate a regular expression that matches emoticons.
 
-    Returns (str):  une expression régulière pour match les émoticons.
+    Returns (str):  regular expression.
 
-    Combine des signes utilisés pour les yeux, le nez, la bouche pour construire une série d'émoticons.
+    Combines signs used for eyes, nose, mouth, ..., to build many emoticons.
 
-    exemples
+    examples
     --------
         :-)
         D-;
@@ -54,13 +55,13 @@ _isemail = re.compile(r"[\w\.\-]@[\w\.\-]+\.[\w\.\-]").search
 
 
 def gettype(s):
-    """Définit le type d'une string: mot, nombre, emoticon, url, etc.
+    """Get the token type of a string.
 
     Args:
-        s (str): la string dont il faut identifier le type.
+        s (str):  the string.
 
     Note:
-        l'ordre des conditions est important.
+        The order of conditions matter!
     """
 
     if s.isspace():
@@ -80,17 +81,24 @@ def gettype(s):
 
 
 class Typifier:
-    def __init__(self):
+    def __init__(self, extname):
         self.table = spacy.lookups.Table()
+        self.extname = extname
+        spacy.tokens.token.Token.set_extension(extname, default=None)
 
     def __call__(self, doc):
         table = self.table
         for token in doc:
             norm = token.norm
             if norm in table:
-                token._.tokentype = table[norm]
+                setattr(token._, self.extname, table[norm])
             else:
                 _type = gettype(token.text)
-                token._.tokentype = _type
+                setattr(token._, self.extname, _type)
                 table[norm] = _type
         return doc
+
+
+@spacy.Language.factory("_tokentype")
+def create_tokentypifier(nlp, name="_tokentype"):
+    return Typifier(extname="tokentype")
