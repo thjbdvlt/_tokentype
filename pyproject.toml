@@ -1,0 +1,26 @@
+[project]
+name = "_tokentype"
+authors = [{name="thjbdvlt"}]
+version = "0.1.0"
+description = "token typing spacy tokens: word, number, punct, emoticon, ..."
+readme = "README.md"
+requires-python = ">=3.8"
+
+[project.urls]
+Homepage = "https://github.com/thjbdvlt/_tokentype"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages]
+find = {}
+
+[tool.ruff]
+exclude = []
+line-length = 70
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = false
