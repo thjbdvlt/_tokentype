@@ -64,17 +64,19 @@ def gettype(s):
         The order of conditions matter!
     """
 
+    nchars = len(list(filter(str.isalpha, s)))
+
     if s.isspace():
         return "space"
     elif _isemoji(s):
         return "emoji"
-    elif _isemoticon(s):
+    elif _isemoticon(s) and (nchars < 2 or "xd" in s.lower()):
         return "emoticon"
     elif _isurl(s) or _isemail(s):
         return "url"
-    elif any([char.isalpha() for char in s]):
+    elif nchars != 0:
         return "word"
-    elif any([char.isdigit() for char in s]):
+    elif any(map(str.isdigit, s)):
         return "number"
     else:
         return "punct"
