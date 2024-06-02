@@ -7,9 +7,9 @@
 |12|number|
 |p.10|word|
 |:-)|emoticon|
-|:-P|emoticon|
+|=P|emoticon|
 |:happy:|emoji|
-|www.on-tenk.org|url|
+|www.on-tenk.com|url|
 |...|punct|
 
 usage
@@ -21,6 +21,12 @@ import _tokentype
 
 nlp = spacy.load("fr_core_news_sm")
 nlp.add_pipe("_tokentype")
+
+for token in nlp("ho! :-)"):
+    print(token, token._.tokentype)
+# ho word
+# ! punct
+# :-) emoticon
 ```
 
 configuration
