@@ -1,4 +1,4 @@
-\tokentype
+tokentype
 ===========
 
 |token|type|
