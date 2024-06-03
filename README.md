@@ -40,12 +40,7 @@ import spacy
 import _tokentype
 
 nlp = spacy.load("fr_core_news_sm")
-
-@spacy.Language.factory("custom_tokentype")
-def create_tokentypifier(nlp, name="custom_tokentype"):
-    return Typifier(extname="TOKEN_SUBCLASS")
-
-nlp.add_pipe("custom_tokentype")
+nlp.add_pipe("_tokentype", name="quoi", config={"extname": "kindoftoken"})
 ```
 
 # installation
@@ -60,4 +55,3 @@ dependencies
 ------------
 
 - spacy
-- python 3.8
