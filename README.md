@@ -1,4 +1,4 @@
-\_tokentype
+\tokentype
 ===========
 
 |token|type|
@@ -17,10 +17,10 @@ usage
 
 ```python
 import spacy
-import _tokentype
+import tokentype
 
 nlp = spacy.load("fr_core_news_sm")
-nlp.add_pipe("_tokentype")
+nlp.add_pipe("tokentype")
 
 for token in nlp("ho! :-)"):
     print(token, token._.tokentype)
@@ -37,17 +37,17 @@ as the module does nearly nothing, there is not much you can configure, but you 
 
 ```python
 import spacy
-import _tokentype
+import tokentype
 
 nlp = spacy.load("fr_core_news_sm")
-nlp.add_pipe("_tokentype", name="quoi", config={"extname": "kindoftoken"})
+nlp.add_pipe("tokentype", name="quoi", config={"extname": "kindoftoken"})
 ```
 
 # installation
 
 ```bash
-git clone https://github.com/thjbdvlt/_tokentype _tokentype
-cd _tokentype
+git clone https://github.com/thjbdvlt/tokentype tokentype
+cd tokentype
 pip install .
 ```
 
