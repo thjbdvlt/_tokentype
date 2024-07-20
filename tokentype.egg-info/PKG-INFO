@@ -1,3 +1,13 @@
+Metadata-Version: 2.1
+Name: tokentype
+Version: 0.1.0
+Summary: token typing spacy tokens: word, number, punct, emoticon, ...
+Author: thjbdvlt
+Project-URL: Homepage, https://github.com/thjbdvlt/tokentype
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 tokentype
 ===========
 
@@ -17,6 +27,7 @@ usage
 
 ```python
 import spacy
+import tokentype
 
 nlp = spacy.load("fr_core_news_sm")
 nlp.add_pipe("tokentype")
@@ -36,6 +47,7 @@ as the module does nearly nothing, there is not much you can configure, but you 
 
 ```python
 import spacy
+import tokentype
 
 nlp = spacy.load("fr_core_news_sm")
 nlp.add_pipe("tokentype", name="quoi", config={"extname": "kindoftoken"})

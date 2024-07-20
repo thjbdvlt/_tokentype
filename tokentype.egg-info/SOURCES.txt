@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+tokentype/__init__.py
+tokentype/tokentype.py
+tokentype.egg-info/PKG-INFO
+tokentype.egg-info/SOURCES.txt
+tokentype.egg-info/dependency_links.txt
+tokentype.egg-info/entry_points.txt
+tokentype.egg-info/top_level.txt
