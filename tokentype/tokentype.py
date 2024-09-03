@@ -48,10 +48,10 @@ def _generate_regex_emoticon():
     return anyemoticon
 
 
-_isemoticon = re.compile(_generate_regex_emoticon()).fullmatch
-_isemoji = re.compile(r":\w+:").fullmatch
-_isurl = re.compile(r"(?:\w+://|www\.)[\S]+[\w/]").search
-_isemail = re.compile(r"[\w\.\-]@[\w\.\-]+\.[\w\.\-]").search
+isemoticon = re.compile(_generate_regex_emoticon()).fullmatch
+isemoji = re.compile(r":\w+:").fullmatch
+isurl = re.compile(r"(?:\w+://|www\.)[\S]+[\w/]").search
+isemail = re.compile(r"[\w\.\-]@[\w\.\-]+\.[\w\.\-]").search
 
 
 def gettype(s):
@@ -68,11 +68,11 @@ def gettype(s):
 
     if s.isspace():
         return "space"
-    elif _isemoji(s):
+    elif isemoji(s):
         return "emoji"
-    elif _isemoticon(s) and (nchars < 2 or "xd" in s.lower()):
+    elif isemoticon(s) and (nchars < 2 or "xd" in s.lower()):
         return "emoticon"
-    elif _isurl(s) or _isemail(s):
+    elif isurl(s) or isemail(s):
         return "url"
     elif nchars != 0:
         return "word"
