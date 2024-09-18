@@ -101,6 +101,9 @@ class Typifier:
         return doc
 
 
-@spacy.Language.factory("tokentype", default_config={"name": "tokentype", "extname": "tokentype"})
+@spacy.Language.factory(
+    "tokentype",
+    default_config={"name": "tokentype", "extname": "tokentype"},
+)
 def create_tokentypifier(nlp, name, extname):
     return Typifier(extname)
