@@ -64,7 +64,9 @@ def gettype(s):
         The order of conditions matter!
     """
 
-    nchars = len(list(filter(str.isalpha, s)))
+    nchars = 0
+    for i in filter(str.isalpha, s):
+        nchars += 1
 
     if s.isspace():
         return "space"
@@ -86,7 +88,9 @@ class Typifier:
     def __init__(self, extname):
         self.table = spacy.lookups.Table()
         self.extname = extname
-        spacy.tokens.token.Token.set_extension(extname, default=None)
+        Token = spacy.tokens.token.Token
+        if not Token.has_extension(extname):
+            Token.set_extension(extname, default=None)
 
     def __call__(self, doc):
         table = self.table
